@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs
+  namespace: nodejs
+  labels:
+    app: nodejs
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nodejs
+  template:
+    metadata:
+      labels:
+        app: nodejs
+    spec:
+      containers:
+        - name: nodejs-app
+          image: g181210038/nodejs-app:latest
+          ports:
+            - name: http
+              containerPort: 1337
